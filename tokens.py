@@ -5,18 +5,7 @@ from enum import Enum
 
 class TokenType(Enum):
     """
-    token types
-    COMMA, DOT, MINUS, PLUS, SEMICOLON, SLASH, STAR, 
-    BANG, BANG_EQUAL,                                
-    EQUAL, EQUAL_EQUAL,                              
-    GREATER, GREATER_EQUAL,                          
-    LESS, LESS_EQUAL, 
-    IDENTIFIER, STRING, NUMBER, 
-
-    AND, CLASS, ELSE, FALSE, FUN, FOR, IF, NIL, OR,  
-    PRINT, RETURN, SUPER, THIS, TRUE, VAR, WHILE,    
-
-    EOF 
+    token types 
     """
 
     LEFT_PAREN = 1  # (
@@ -42,10 +31,11 @@ class TokenType(Enum):
     LESS = 18  # <
     LESS_EQUAL = 19 # <=
 
-    IDENTIFIER = 20  ## 标识符
+    IDENTIFIER = 20  ## 标识符(变量名，函数名, 类名)
     STRING = 21  # 字符串
     NUMBER = 22  # 数字
 
+    # key words
     AND = 23  # &&
     OR = 24  # ||
     IF = 25  # if
@@ -56,10 +46,30 @@ class TokenType(Enum):
     FALSE = 30  # false
 
     VAR = 31  # var
-    
+    NIL = 32  # nil
+    FUNC = 33  # func
+    PRINT = 34  # print
+    RETURN = 35  # return
+    THIS = 36  # this
+    SUPER = 37  # super
+
+    EOF = 38  # eof
 
 
 class Token(object):
+    """
+    A lexical token or simply token is a string with an assigned and thus identified meaning. 
+    It is structured as a pair consisting of a token name and an optional token value. 
+    The token name is a category of lexical unit.
+    
+    [2] Common token names are:
+    identifier: names the programmer chooses;
+    keyword: names already in the programming language;
+    separator (also known as punctuators): punctuation characters and paired-delimiters;
+    operator: symbols that operate on arguments and produce results;
+    literal: numeric, logical, textual, reference literals;
+    comment: line, block.
+    """
     def __init__(self, token_type, lexeme, literal, line_num):
         self.token_type = token_type
         self.lexeme = lexeme
